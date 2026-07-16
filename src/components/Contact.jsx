@@ -3,6 +3,7 @@ import { Mail, Github, Linkedin, MapPin, Send } from 'lucide-react'
 import SectionHeading, { fadeUp } from './SectionHeading'
 import { CONTACT } from '../data/content'
 import { useReducedMotion } from '../hooks/useReducedMotion'
+import { useGlowHandlers } from '../hooks/useGlowHandlers'
 
 const LINKS = [
   {
@@ -33,6 +34,48 @@ const LINKS = [
   },
 ]
 
+function ContactCard({ link, delay, reduced }) {
+  const Icon = link.icon
+  const { onMouseMove, onMouseLeave } = useGlowHandlers()
+
+  const content = (
+    <motion.div
+      {...fadeUp(reduced, delay)}
+      whileHover={{ x: 4 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+      className="glow-card flex items-center gap-4 p-4 sm:p-5"
+    >
+      <div className="relative z-[1] flex w-full items-center gap-4">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-flow/10 text-flow transition-shadow duration-300 group-hover:shadow-glow-sm">
+          <Icon size={20} />
+        </div>
+        <div className="min-w-0">
+          <p className="text-xs font-medium uppercase tracking-wide text-mist-faint">
+            {link.label}
+          </p>
+          <p className="truncate text-sm font-semibold text-mist">{link.value}</p>
+        </div>
+      </div>
+    </motion.div>
+  )
+
+  if (link.href) {
+    return (
+      <a
+        href={link.href}
+        {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        className="group block focus-visible:rounded-xl"
+      >
+        {content}
+      </a>
+    )
+  }
+
+  return content
+}
+
 export default function Contact() {
   const reduced = useReducedMotion()
 
@@ -48,45 +91,10 @@ export default function Contact() {
             />
           </div>
 
-          <motion.div {...fadeUp(reduced)} className="space-y-4">
-            {LINKS.map((link, i) => {
-              const Icon = link.icon
-              const content = (
-                <div className="card-surface flex items-center gap-4 p-4 transition-colors hover:border-flow/25 sm:p-5">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-flow/10 text-flow">
-                    <Icon size={20} />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-xs font-medium uppercase tracking-wide text-mist-faint">
-                      {link.label}
-                    </p>
-                    <p className="truncate text-sm font-semibold text-mist">{link.value}</p>
-                  </div>
-                </div>
-              )
-
-              if (link.href) {
-                return (
-                  <motion.div key={link.label} {...fadeUp(reduced, i * 0.08)}>
-                    <a
-                      href={link.href}
-                      {...(link.external
-                        ? { target: '_blank', rel: 'noopener noreferrer' }
-                        : {})}
-                      className="block focus-visible:rounded-xl"
-                    >
-                      {content}
-                    </a>
-                  </motion.div>
-                )
-              }
-
-              return (
-                <motion.div key={link.label} {...fadeUp(reduced, i * 0.08)}>
-                  {content}
-                </motion.div>
-              )
-            })}
+          <div className="space-y-4">
+            {LINKS.map((link, i) => (
+              <ContactCard key={link.label} link={link} delay={i * 0.08} reduced={reduced} />
+            ))}
 
             <motion.div {...fadeUp(reduced, 0.4)} className="pt-4">
               <a href={`mailto:${CONTACT.email}`} className="btn-primary w-full sm:w-auto">
@@ -94,7 +102,7 @@ export default function Contact() {
                 Enviar email
               </a>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

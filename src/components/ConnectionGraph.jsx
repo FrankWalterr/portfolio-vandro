@@ -124,7 +124,7 @@ export default function ConnectionGraph() {
               textAnchor="middle"
               fill="#94A3B8"
               fontSize="3.2"
-              fontFamily="Outfit, sans-serif"
+              fontFamily="Sora, sans-serif"
               fontWeight="500"
             >
               {node.label}

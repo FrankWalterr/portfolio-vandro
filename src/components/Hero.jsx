@@ -54,8 +54,8 @@ export default function Hero() {
               variants={item}
               className="mt-6 max-w-lg text-lg leading-relaxed text-mist-muted"
             >
-              Desenvolvedor de Software — APIs REST, aplicações web e bases de dados
-              para contextos académicos, hoteleiros, logísticos e analíticos.
+              Desenvolvedor de Software &amp; UX/UI Designer na Z-Systems — APIs REST,
+              aplicações web, interfaces e conteúdos visuais para negócios reais.
             </motion.p>
 
             <motion.div variants={item} className="mt-8 flex flex-wrap gap-3">
@@ -74,8 +74,8 @@ export default function Hero() {
               className="mt-12 flex flex-wrap gap-6 border-t border-deep-border pt-8"
             >
               {[
-                { value: '5+', label: 'Projetos completos' },
-                { value: 'Java · React · FastAPI', label: 'Stack principal' },
+                { value: '5+', label: 'Projetos de software' },
+                { value: 'Z-Systems', label: 'UX/UI · Beira' },
                 { value: 'UCM – FEG', label: 'Formação' },
               ].map((stat) => (
                 <div key={stat.label}>

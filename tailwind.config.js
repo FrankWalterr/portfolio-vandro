@@ -27,8 +27,8 @@ export default {
         },
       },
       fontFamily: {
-        display: ['Outfit', 'system-ui', 'sans-serif'],
-        body: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+        display: ['Sora', 'system-ui', 'sans-serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         'display-xl': ['clamp(2.25rem, 5vw, 3.75rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
@@ -60,6 +60,11 @@ export default {
       },
       backgroundSize: {
         grid: '48px 48px',
+      },
+      boxShadow: {
+        'glow-sm': '0 0 20px rgba(45, 212, 191, 0.15)',
+        'glow-md': '0 0 40px rgba(45, 212, 191, 0.12), 0 0 80px rgba(45, 212, 191, 0.06)',
+        'glow-signal': '0 0 30px rgba(245, 158, 11, 0.15)',
       },
     },
   },
