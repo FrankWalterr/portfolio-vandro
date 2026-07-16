@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-deep font-body text-mist antialiased;
+  }
+
+  ::selection {
+    @apply bg-flow/30 text-mist;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-flow;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply mx-auto w-full max-w-content px-5 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-section;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-md border border-deep-border bg-deep-raised/60 px-2.5 py-1 text-xs font-medium text-mist-muted;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-flow px-5 py-2.5 text-sm font-semibold text-deep transition-colors hover:bg-flow-dim focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flow;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-deep-border bg-transparent px-5 py-2.5 text-sm font-semibold text-mist transition-colors hover:border-flow/40 hover:bg-flow-glow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flow;
+  }
+
+  .card-surface {
+    @apply rounded-xl border border-deep-border bg-deep-card/80 backdrop-blur-sm;
+  }
+
+  .sr-only {
+    @apply absolute h-px w-px overflow-hidden whitespace-nowrap border-0 p-0;
+    clip: rect(0, 0, 0, 0);
+    margin: -1px;
+  }
+}
