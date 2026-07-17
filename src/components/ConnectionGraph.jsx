@@ -47,21 +47,8 @@ export default function ConnectionGraph() {
           </filter>
         </defs>
 
-        {/* Grid dots */}
-        {Array.from({ length: 36 }).map((_, i) => {
-          const row = Math.floor(i / 6)
-          const col = i % 6
-          return (
-            <circle
-              key={i}
-              cx={10 + col * 16}
-              cy={10 + row * 16}
-              r="0.4"
-              fill="#2DD4BF"
-              opacity="0.15"
-            />
-          )
-        })}
+        {/* Soft ambient glow behind graph */}
+        <ellipse cx="50" cy="50" rx="42" ry="38" fill="url(#nodeGlow)" opacity="0.35" />
 
         {/* Edges */}
         {EDGES.map(([from, to], i) => {

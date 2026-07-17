@@ -10,15 +10,15 @@ const ACCENT = {
     badge: 'bg-flow/10 text-flow',
     icon: Code2,
     hover: 'group-hover:text-flow',
-    gradient: 'from-flow/8 via-transparent to-signal/5',
-    dot: '#2DD4BF',
+    gradient: 'from-flow/10 via-flow/5 to-transparent',
+    bar: 'bg-flow',
   },
   audiovisual: {
     badge: 'bg-signal/10 text-signal',
     icon: Clapperboard,
     hover: 'group-hover:text-signal',
-    gradient: 'from-signal/8 via-transparent to-flow/5',
-    dot: '#F59E0B',
+    gradient: 'from-signal/10 via-signal/5 to-transparent',
+    bar: 'bg-signal',
   },
 }
 
@@ -26,65 +26,69 @@ function ProjectImagePlaceholder({ domain, categoryId }) {
   const accent = ACCENT[categoryId]
 
   return (
-    <div
-      className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-deep-raised"
-      aria-hidden="true"
-    >
-      <div className={`absolute inset-0 bg-gradient-to-br opacity-80 ${accent.gradient}`} />
-      <div className="absolute inset-0 opacity-15">
-        <svg width="100%" height="100%">
-          <defs>
-            <pattern id={`dots-${domain}-${categoryId}`} x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
-              <circle cx="2" cy="2" r="0.7" fill={accent.dot} />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill={`url(#dots-${domain}-${categoryId})`} />
-        </svg>
-      </div>
-      <div className={`relative flex flex-col items-center gap-1 text-mist-faint transition-colors duration-300 ${accent.hover}`}>
-        <ImageIcon size={20} strokeWidth={1.5} />
+    <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-deep-raised" aria-hidden="true">
+      <div className={`absolute inset-0 bg-gradient-to-br opacity-90 transition-transform duration-700 group-hover:scale-110 ${accent.gradient}`} />
+      <div
+        className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        style={{
+          background: `radial-gradient(circle, ${categoryId === 'software' ? 'rgba(45,212,191,0.18)' : 'rgba(245,158,11,0.18)'}, transparent 70%)`,
+        }}
+      />
+      <div className={`relative flex flex-col items-center gap-1.5 transition-all duration-300 group-hover:scale-110 ${accent.hover} text-mist-faint`}>
+        <ImageIcon size={22} strokeWidth={1.5} />
         <span className="text-[9px] font-bold uppercase tracking-widest">{domain}</span>
       </div>
     </div>
   )
 }
 
-function ProjectCard({ project }) {
+function ProjectCard({ project, index, reduced }) {
   const { onMouseMove, onMouseLeave } = useGlowHandlers()
   const accent = ACCENT[project.category]
   const Icon = accent.icon
 
   return (
     <motion.article
-      whileHover={{ y: -4 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+      initial={reduced ? {} : { opacity: 0, y: 32, scale: 0.94 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.55, delay: index * 0.05, type: 'spring', stiffness: 200 }}
+      whileHover={reduced ? {} : { y: -8, scale: 1.025 }}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
       className="glow-card group flex h-full flex-col overflow-hidden"
     >
+      <div className={`h-0.5 w-0 transition-all duration-500 group-hover:w-full ${accent.bar}`} />
+
       <ProjectImagePlaceholder domain={project.domain} categoryId={project.category} />
 
-      <div className="relative z-[1] flex flex-1 flex-col p-4">
-        <div className="mb-2 flex items-center gap-2">
-          <span className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${accent.badge}`}>
-            <Icon size={10} aria-hidden="true" />
-            {project.category === 'software' ? 'Software' : 'Audiovisual'}
-          </span>
-        </div>
+      <div className="relative z-[1] flex flex-1 flex-col p-4 sm:p-5">
+        <span className={`mb-2 inline-flex w-fit items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${accent.badge}`}>
+          <Icon size={10} aria-hidden="true" />
+          {project.category === 'software' ? 'Software' : 'Audiovisual'}
+        </span>
 
         <h3 className={`font-display text-sm font-semibold leading-snug text-mist transition-colors duration-300 sm:text-base ${accent.hover}`}>
           {project.name}
         </h3>
 
-        <p className="mt-2 flex-1 text-xs leading-relaxed text-mist-muted sm:text-sm">
+        <p className="mt-2 flex-1 text-xs leading-relaxed text-mist-muted transition-colors duration-300 group-hover:text-mist/85 sm:text-sm">
           {project.description}
         </p>
 
-        <ul className="mt-3 flex flex-wrap gap-1" role="list" aria-label="Tecnologias">
-          {project.technologies.map((tech) => (
-            <li key={tech}>
-              <span className="chip text-[9px] sm:text-[10px]">{tech}</span>
-            </li>
+        <ul className="mt-4 flex flex-wrap gap-1.5" role="list" aria-label="Tecnologias">
+          {project.technologies.map((tech, i) => (
+            <motion.li
+              key={tech}
+              initial={reduced ? {} : { opacity: 0, scale: 0.85 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 + i * 0.04 }}
+            >
+              <span className="chip text-[9px] transition-all duration-300 group-hover:border-flow/30 group-hover:text-mist sm:text-[10px]">
+                {tech}
+              </span>
+            </motion.li>
           ))}
         </ul>
       </div>
@@ -92,74 +96,36 @@ function ProjectCard({ project }) {
   )
 }
 
-function ProjectRow({ projects, categoryId, startDelay, reduced }) {
-  const rows = []
-  for (let i = 0; i < projects.length; i += 3) {
-    rows.push(projects.slice(i, i + 3))
-  }
+function ProjectGroup({ category, projects, startDelay, reduced, isFirst, startIndex }) {
+  const Icon = ACCENT[category.id].icon
 
   return (
-    <div className="space-y-4">
-      {rows.map((row, rowIndex) => {
-        const isPartialRow = row.length < 3
-        const colClass =
-          row.length === 1
-            ? 'grid-cols-1 max-w-sm mx-auto'
-            : row.length === 2
-              ? 'grid-cols-1 sm:grid-cols-2 max-w-2xl mx-auto'
-              : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-
-        return (
-          <div
-            key={`${categoryId}-row-${rowIndex}`}
-            className={`grid gap-4 xl:gap-5 ${colClass} ${isPartialRow ? 'w-full' : ''}`}
-          >
-            {row.map((project, i) => (
-              <motion.div
-                key={project.id}
-                {...fadeUp(reduced, startDelay + rowIndex * 0.1 + i * 0.05)}
-                className="h-full"
-              >
-                <ProjectCard project={project} />
-              </motion.div>
-            ))}
-          </div>
-        )
-      })}
-    </div>
-  )
-}
-
-function ProjectGroup({ category, projects, startDelay, reduced }) {
-  const accent = ACCENT[category.id]
-  const Icon = accent.icon
-
-  return (
-    <div className="rounded-2xl border border-deep-border/60 bg-deep-raised/20 p-5 sm:p-6 lg:p-8">
+    <div className={isFirst ? '' : 'border-t border-deep-border/50 pt-14'}>
       <motion.div
         {...fadeUp(reduced, startDelay)}
-        className="mb-6 flex flex-col gap-3 border-b border-deep-border/80 pb-5 sm:flex-row sm:items-center sm:justify-between"
+        className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between"
       >
-        <div className="flex items-start gap-3">
-          <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${accent.badge}`}>
-            <Icon size={18} aria-hidden="true" />
-          </div>
+        <div className="flex items-center gap-3">
+          <motion.div whileHover={{ rotate: 8, scale: 1.1 }} transition={{ type: 'spring', stiffness: 400 }}>
+            <Icon size={20} className={category.id === 'software' ? 'text-flow' : 'text-signal'} aria-hidden="true" />
+          </motion.div>
           <div>
-            <h3 className="font-display text-lg font-semibold text-mist sm:text-xl">{category.title}</h3>
+            <h3 className="font-display text-xl font-semibold text-mist sm:text-2xl">{category.title}</h3>
             <p className="mt-0.5 text-sm text-mist-muted">{category.subtitle}</p>
           </div>
         </div>
-        <span className={`w-fit rounded-full px-3 py-1 text-xs font-bold ${accent.badge}`}>
+        <span className={`text-xs font-semibold uppercase tracking-widest ${category.id === 'software' ? 'text-flow' : 'text-signal'}`}>
           {projects.length} projectos
         </span>
       </motion.div>
 
-      <ProjectRow
-        projects={projects}
-        categoryId={category.id}
-        startDelay={startDelay + 0.08}
-        reduced={reduced}
-      />
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:gap-5">
+        {projects.map((project, i) => (
+          <div key={project.id} className="h-full">
+            <ProjectCard project={project} index={startIndex + i} reduced={reduced} />
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
@@ -172,6 +138,8 @@ export default function Projects() {
     projects: PROJECTS.filter((p) => p.category === cat.id),
   }))
 
+  let runningIndex = 0
+
   return (
     <section id="projetos" className="section-padding" aria-labelledby="projects-heading">
       <div className="section-container">
@@ -181,16 +149,22 @@ export default function Projects() {
           description="Software e produção audiovisual — organizados por área, com entregas concretas em cada card."
         />
 
-        <div className="space-y-8">
-          {grouped.map(({ category, projects }, i) => (
-            <ProjectGroup
-              key={category.id}
-              category={category}
-              projects={projects}
-              startDelay={i * 0.12}
-              reduced={reduced}
-            />
-          ))}
+        <div>
+          {grouped.map(({ category, projects }, i) => {
+            const startIndex = runningIndex
+            runningIndex += projects.length
+            return (
+              <ProjectGroup
+                key={category.id}
+                category={category}
+                projects={projects}
+                startDelay={i * 0.12}
+                reduced={reduced}
+                isFirst={i === 0}
+                startIndex={startIndex}
+              />
+            )
+          })}
         </div>
       </div>
     </section>

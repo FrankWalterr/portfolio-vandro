@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
 import { ArrowDown, Mail } from 'lucide-react'
 import ConnectionGraph from './ConnectionGraph'
+import HeroBackground from './HeroBackground'
+import AvailabilityBanner from './AvailabilityBanner'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 
 export default function Hero() {
@@ -8,9 +10,7 @@ export default function Hero() {
 
   const container = {
     hidden: {},
-    show: {
-      transition: { staggerChildren: reduced ? 0 : 0.12 },
-    },
+    show: { transition: { staggerChildren: reduced ? 0 : 0.1 } },
   }
 
   const item = {
@@ -19,82 +19,72 @@ export default function Hero() {
   }
 
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen overflow-hidden pt-16"
-      aria-label="Introdução"
-    >
-      {/* Background */}
-      <div className="pointer-events-none absolute inset-0 bg-grid-pattern bg-grid opacity-60" />
-      <div className="pointer-events-none absolute -right-32 top-1/4 h-96 w-96 rounded-full bg-flow/5 blur-3xl" />
-      <div className="pointer-events-none absolute -left-32 bottom-1/4 h-80 w-80 rounded-full bg-signal/5 blur-3xl" />
+    <section id="hero" className="relative min-h-screen overflow-hidden pt-16" aria-label="Introdução">
+      <HeroBackground />
 
-      <div className="section-container relative flex min-h-[calc(100vh-4rem)] flex-col justify-center py-16 lg:py-24">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <motion.div variants={container} initial="hidden" animate="show">
-            <motion.p
-              variants={item}
-              className="mb-4 inline-flex items-center gap-2 rounded-full border border-deep-border bg-deep-raised/50 px-4 py-1.5 text-sm text-mist-muted"
-            >
-              <span className="h-2 w-2 animate-pulse rounded-full bg-flow" />
-              Disponível para emprego &amp; estágio · Moçambique
-            </motion.p>
-
-            <motion.h1
-              variants={item}
-              className="font-display text-display-xl font-bold text-mist"
-            >
-              Sistemas que ligam{' '}
+      <div className="section-container relative flex min-h-[calc(100vh-4rem)] flex-col justify-center py-16 lg:py-20">
+        <motion.div variants={container} initial="hidden" animate="show" className="flex flex-col gap-10 lg:gap-12">
+          {/* Nome */}
+          <motion.header variants={item} className="text-center lg:text-left">
+            <h1 className="font-display text-[clamp(2.25rem,5.5vw,3.75rem)] font-bold leading-[1.05] tracking-tight text-mist">
+              Vandro{' '}
               <span className="bg-gradient-to-r from-flow to-signal bg-clip-text text-transparent">
-                pessoas, processos e dados
+                Correia
               </span>
-            </motion.h1>
+            </h1>
+            <p className="mt-3 font-display text-base font-medium text-mist-muted sm:text-lg">
+              Desenvolvedor de Software
+              <span aria-hidden="true" className="mx-2 text-flow/40">·</span>
+              UX/UI Designer
+            </p>
+          </motion.header>
 
-            <motion.p
-              variants={item}
-              className="mt-6 max-w-lg text-lg leading-relaxed text-mist-muted"
-            >
-              Desenvolvedor de Software &amp; UX/UI Designer na Z-Systems — APIs REST,
-              aplicações web, interfaces e conteúdos visuais para negócios reais.
-            </motion.p>
+          {/* Banner central — substitui o texto "Sistemas que ligam..." */}
+          <AvailabilityBanner variants={item} className="mx-auto max-w-2xl" />
 
-            <motion.div variants={item} className="mt-8 flex flex-wrap gap-3">
-              <a href="#projetos" className="btn-primary">
-                Ver projetos
-                <ArrowDown size={16} />
-              </a>
-              <a href="#contacto" className="btn-secondary">
-                <Mail size={16} />
-                Contactar
-              </a>
+          {/* Conteúdo + grafo */}
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <motion.div variants={item} className="space-y-8">
+              <p className="max-w-lg text-base leading-relaxed text-mist-muted sm:text-lg">
+                Colaborador na Z-Systems (Beira) — construo APIs REST, aplicações web,
+                interfaces e conteúdos visuais para negócios reais.
+              </p>
+
+              <div className="flex flex-wrap gap-3">
+                <a href="#projetos" className="btn-primary">
+                  Ver projetos
+                  <ArrowDown size={16} />
+                </a>
+                <a href="#contacto" className="btn-secondary">
+                  <Mail size={16} />
+                  Contactar
+                </a>
+              </div>
+
+              <div className="flex flex-wrap gap-6 border-t border-deep-border pt-8">
+                {[
+                  { value: '5+', label: 'Projetos de software' },
+                  { value: 'Z-Systems', label: 'UX/UI · Beira' },
+                  { value: 'UCM – FEG', label: 'Formação' },
+                ].map((stat) => (
+                  <div key={stat.label}>
+                    <p className="font-display text-lg font-semibold text-mist">{stat.value}</p>
+                    <p className="text-xs text-mist-faint">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
             </motion.div>
 
             <motion.div
-              variants={item}
-              className="mt-12 flex flex-wrap gap-6 border-t border-deep-border pt-8"
+              initial={reduced ? {} : { opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="mx-auto w-full max-w-md lg:max-w-none"
             >
-              {[
-                { value: '5+', label: 'Projetos de software' },
-                { value: 'Z-Systems', label: 'UX/UI · Beira' },
-                { value: 'UCM – FEG', label: 'Formação' },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <p className="font-display text-lg font-semibold text-mist">{stat.value}</p>
-                  <p className="text-xs text-mist-faint">{stat.label}</p>
-                </div>
-              ))}
+              <ConnectionGraph />
             </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial={reduced ? {} : { opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="mx-auto w-full max-w-lg lg:max-w-none"
-          >
-            <ConnectionGraph />
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

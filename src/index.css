@@ -88,6 +88,11 @@
     transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
   }
 
+  .about-card:hover {
+    border-left-color: rgba(45, 212, 191, 0.9);
+    box-shadow: -4px 0 24px rgba(45, 212, 191, 0.12), 0 8px 32px rgba(45, 212, 191, 0.07);
+  }
+
   .glow-card::before {
     content: '';
     position: absolute;
@@ -151,6 +156,12 @@
     @apply absolute h-px w-px overflow-hidden whitespace-nowrap border-0 p-0;
     clip: rect(0, 0, 0, 0);
     margin: -1px;
+  }
+
+  .hero-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 128px 128px;
   }
 }
 
