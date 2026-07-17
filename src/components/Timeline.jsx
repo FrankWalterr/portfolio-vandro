@@ -86,7 +86,7 @@ export default function Timeline() {
         <SectionHeading
           label="Percurso"
           title="Experiência & formação"
-          description="Evolução técnica desde 2023 — cada ano com entregas concretas e novas competências."
+          description="Evolução técnica desde 2023, cada ano com entregas concretas e novas competências."
         />
 
         <motion.div

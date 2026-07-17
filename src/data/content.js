@@ -77,7 +77,7 @@ export const PROFESSIONAL_ROLES = [
     description:
       'Membro da equipa de uma empresa de tecnologia sediada em Beira, focada em desenvolvimento de websites, sistemas web e soluções digitais para negócios.',
     focus:
-      'Design de interfaces e optimização da experiência do utilizador nos projectos da empresa — da wireframe ao pixel final.',
+      'Design de interfaces e optimização da experiência do utilizador nos projectos da empresa da wireframe ao pixel final.',
     highlights: [
       'UI para websites e sistemas web',
       'Optimização de UX',
@@ -90,7 +90,7 @@ export const PROFESSIONAL_ROLES = [
     title: 'Design & Produção Audiovisual',
     roleType: 'Experiência independente',
     description:
-      'Criação de conteúdos visuais e audiovisuais para redes sociais, marcas e projectos pessoais — combinando criatividade com rigor técnico para materiais atrativos e profissionais.',
+      'Criação de conteúdos visuais e audiovisuais para redes sociais, marcas e projectos pessoais combinando criatividade com rigor técnico para materiais atrativos e profissionais.',
     deliverables: [
       'Produção de vídeos promocionais',
       'Reels e Shorts para redes sociais',
@@ -129,7 +129,7 @@ export const PROJECTS = [
     category: 'software',
     name: 'HotelRez',
     description:
-      'Sistema de gestão hoteleira com reservas, quartos, clientes e painel administrativo — do check-in ao relatório operacional.',
+      'Sistema de gestão hoteleira com reservas, quartos, clientes e painel administrativo do check-in ao relatório operacional.',
     technologies: ['Java', 'Spring Boot', 'MySQL'],
     domain: 'Hotelaria',
   },
@@ -174,7 +174,7 @@ export const PROJECTS = [
     category: 'audiovisual',
     name: 'Reels e Shorts para redes sociais',
     description:
-      'Conteúdo vertical optimizado para Instagram, TikTok e YouTube Shorts — ritmo, legibilidade e impacto em poucos segundos.',
+      'Conteúdo vertical optimizado para Instagram, TikTok e YouTube Shorts ritmo, legibilidade e impacto em poucos segundos.',
     technologies: ['CapCut', 'Premiere Pro', 'After Effects'],
     domain: 'Social',
   },
@@ -183,7 +183,7 @@ export const PROJECTS = [
     category: 'audiovisual',
     name: 'Design de posts e banners',
     description:
-      'Peças gráficas para redes sociais e campanhas digitais — layouts consistentes, legíveis e alinhados com a identidade da marca.',
+      'Peças gráficas para redes sociais e campanhas digitais layouts consistentes, legíveis e alinhados com a identidade da marca.',
     technologies: ['Photoshop', 'Illustrator', 'Canva'],
     domain: 'Design',
   },
@@ -192,7 +192,7 @@ export const PROJECTS = [
     category: 'audiovisual',
     name: 'Criação de identidades visuais',
     description:
-      'Logotipos, paletas de cor e sistemas visuais completos para marcas e projectos — da concepção à aplicação.',
+      'Logotipos, paletas de cor e sistemas visuais completos para marcas e projectos da concepção à aplicação.',
     technologies: ['Illustrator', 'Photoshop', 'Canva'],
     domain: 'Branding',
   },
@@ -201,7 +201,7 @@ export const PROJECTS = [
     category: 'audiovisual',
     name: 'Produção de conteúdos audiovisuais para eventos e projetos',
     description:
-      'Captação e edição de material para eventos, coberturas e projectos especiais — vídeo, áudio e entrega final polida.',
+      'Captação e edição de material para eventos, coberturas e projectos especiais vídeo, áudio e entrega final polida.',
     technologies: ['Premiere Pro', 'Sony Vegas Pro', 'FL Studio'],
     domain: 'Eventos',
   },
@@ -249,7 +249,7 @@ export const EXPERIENCE_SUMMARY =
   'Experiência em projectos académicos e profissionais: desenvolvimento de APIs REST, modelação de bases de dados, design UX/UI na Z-Systems, produção audiovisual e documentação técnica.'
 
 export const ABOUT_PARAGRAPHS = [
-  'Estudante finalista da Licenciatura em Tecnologias de Informação na Universidade Católica de Moçambique (UCM – FEG). Trabalho com desenvolvimento de software, web, bases de dados, cibersegurança e análise de dados — sempre orientado a problemas concretos.',
-  'Construo sistemas que ligam departamentos, processos e dados. Em paralelo, actuo como UX/UI Designer na Z-Systems (Beira) e produzo conteúdos visuais e audiovisuais — da interface ao vídeo promocional.',
+  'Estudante finalista da Licenciatura em Tecnologias de Informação na Universidade Católica de Moçambique (UCM – FEG). Trabalho com desenvolvimento de software, web, bases de dados, cibersegurança e análise de dados sempre orientado a problemas concretos.',
+  'Construo sistemas que ligam departamentos, processos e dados. Em paralelo, actuo como UX/UI Designer na Z-Systems (Beira) e produzo conteúdos visuais e audiovisuais da interface ao vídeo promocional.',
   'Objectivo imediato: iniciar carreira como Desenvolvedor de Software, contribuindo para projectos inovadores enquanto evoluo tecnicamente em equipas de produção.',
 ]

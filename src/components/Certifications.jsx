@@ -13,7 +13,7 @@ export default function Certifications() {
         <SectionHeading
           label="Certificações"
           title="Próximo marco"
-          description="Ainda sem certificações formais — mas com objectivos definidos para validar competências em cloud, redes e dados."
+          description="Ainda sem certificações formais mas com objectivos definidos para validar competências em cloud, redes e dados."
         />
 
         <motion.div

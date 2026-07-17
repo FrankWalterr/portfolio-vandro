@@ -91,7 +91,7 @@ export default function Stack() {
         <SectionHeading
           label="Stack técnico"
           title="Ferramentas por domínio"
-          description="Competências de desenvolvimento e de design/audiovisual — agrupadas por área de actuação."
+          description="Competências de desenvolvimento e de design/audiovisual agrupadas por área de actuação."
         />
 
         <div className="space-y-14">

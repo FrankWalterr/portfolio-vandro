@@ -43,7 +43,7 @@ export default function Hero() {
               <AvailabilityBanner />
 
               <p className="max-w-lg text-base leading-relaxed text-mist-muted sm:text-lg">
-                Colaborador na Z-Systems (Beira) — construo APIs REST, aplicações web,
+                Colaborador na Z-Systems (Beira), construo APIs REST, aplicações web,
                 interfaces e conteúdos visuais para negócios reais.
               </p>
 

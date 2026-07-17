@@ -146,7 +146,7 @@ export default function Projects() {
         <SectionHeading
           label="Projetos"
           title="O que construí"
-          description="Software e produção audiovisual — organizados por área, com entregas concretas em cada card."
+          description="Software e produção audiovisual organizados por área, com entregas concretas em cada card."
         />
 
         <div>

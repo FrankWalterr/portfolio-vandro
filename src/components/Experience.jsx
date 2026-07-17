@@ -114,7 +114,7 @@ export default function Experience() {
         <SectionHeading
           label="Experiência"
           title="Onde actuo"
-          description="Colaboração profissional em tecnologia e produção criativa — do pixel da interface ao vídeo promocional."
+          description="Colabodo pixel ação profissional em tecnologia e produção criativa do pixel da interface ao vídeo promocional.da interface ao vídeo promocional."
         />
 
         <div className="grid gap-6 lg:grid-cols-2">
